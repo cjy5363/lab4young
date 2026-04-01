@@ -3,51 +3,46 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Client to send Pizza objects to the web service
+ */
 public class WebServiceCaller {
     public static void main(String[] args) {
         try {
-            // Flat Pizza
-            String flatPizza = "Medium,Cheese,9.99";
-            // JSON Pizza
-            String jsonPizza = "{size:Large,toppings:Pepperoni,price:12.99}";
+            // Create Pizza objects
+            main.Pizza flatPizza = new main.Pizza("Medium", "Cheese", 9.99);
+            main.Pizza jsonPizza = new main.Pizza("Large", "Pepperoni", 12.99);
 
-            // URL
+            // URL for server
             URL url = new URL("http://localhost:8080/hello");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
-
-            con.setRequestMethod("POST");
-            con.setDoOutput(true);
 
             // Send Flat Pizza
-            OutputStream os = con.getOutputStream();
-            os.write(flatPizza.getBytes());
-            os.close();
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            System.out.println("Sent Flat Pizza: " + flatPizza.toFlatString());
+            System.out.println("Response Code: " + con.getResponseCode());
 
-            // Get response code
-            int responseCode = con.getResponseCode();
-            System.out.println("Sent Flat Pizza: " + flatPizza);
-            System.out.println("Response Code: " + responseCode);
+            // Read server response
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String line;
+            StringBuilder response = new StringBuilder();
+            while ((line = in.readLine()) != null) {
+                response.append(line);
+            }
+            in.close();
+            System.out.println("Server response: " + response);
 
             // Send JSON Pizza
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("POST");
-            con.setDoOutput(true);
-            os = con.getOutputStream();
-            os.write(jsonPizza.getBytes());
-            os.close();
+            con.setRequestMethod("GET");
+            System.out.println("Sent JSON Pizza: " + jsonPizza.toJsonString());
+            System.out.println("Response Code: " + con.getResponseCode());
 
-            responseCode = con.getResponseCode();
-            System.out.println("Sent JSON Pizza: " + jsonPizza);
-            System.out.println("Response Code: " + responseCode);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
+            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            response = new StringBuilder();
             while ((line = in.readLine()) != null) {
                 response.append(line);
             }

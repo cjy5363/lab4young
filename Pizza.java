@@ -1,7 +1,7 @@
 package main;
 
 /**
- * Pizza class represents a pizza object
+ * Pizza class to represent a pizza object
  */
 public class Pizza {
 
@@ -16,53 +16,39 @@ public class Pizza {
         this.price = price;
     }
 
-    public Pizza() {}
+    // Getters
+    public String getSize() {
+        return size;
+    }
 
-    // Getter and Setter methods
-    public String getSize() { return size; }
-    public void setSize(String size) { this.size = size; }
+    public String getToppings() {
+        return toppings;
+    }
 
-    public String getToppings() { return toppings; }
-    public void setToppings(String toppings) { this.toppings = toppings; }
+    public double getPrice() {
+        return price;
+    }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    // Setters
+    public void setSize(String size) {
+        this.size = size;
+    }
 
-    // Flat string for sending
-    public String toDataString() {
+    public void setToppings(String toppings) {
+        this.toppings = toppings;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    // Flat representation
+    public String toFlatString() {
         return size + "," + toppings + "," + price;
     }
 
-    // Create Pizza from flat string (no fancy parsing)
-    public static Pizza fromDataString(String data) {
-        String[] parts = data.split(",");
-        Pizza pizza = new Pizza();
-        pizza.setSize(parts[0]);
-        pizza.setToppings(parts[1]);
-        pizza.setPrice(Double.parseDouble(parts[2]));
-        return pizza;
-    }
-
-    // JSON
-    public String toJSON() {
+    // JSON-like representation
+    public String toJsonString() {
         return "{size:" + size + ",toppings:" + toppings + ",price:" + price + "}";
-    }
-
-    // Create Pizza
-    public static Pizza fromJSON(String data) {
-        // Remove { } and split by comma
-        data = data.replace("{", "").replace("}", "");
-        String[] parts = data.split(",");
-
-        Pizza pizza = new Pizza();
-        pizza.setSize(parts[0].split(":")[1]);
-        pizza.setToppings(parts[1].split(":")[1]);
-        pizza.setPrice(Double.parseDouble(parts[2].split(":")[1]));
-
-        return pizza;
-    }
-
-    public String toString() {
-        return "Pizza [size=" + size + ", toppings=" + toppings + ", price=" + price + "]";
     }
 }
