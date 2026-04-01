@@ -20,10 +20,8 @@ public class SimpleHttpServer {
     static class MyHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            // Print to console when a request is received
             System.out.println("Received a request!");
 
-            // Simple text response for the client
             String response = "Request received by server";
             exchange.sendResponseHeaders(200, response.getBytes().length);
 

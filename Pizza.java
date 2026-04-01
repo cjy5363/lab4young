@@ -1,22 +1,20 @@
 package main;
 
-/**
- * Pizza class to represent a pizza object
- */
+
 public class Pizza {
 
     private String size;
     private String toppings;
     private double price;
 
-    // Constructor
+    //Constructor
     public Pizza(String size, String toppings, double price) {
         this.size = size;
         this.toppings = toppings;
         this.price = price;
     }
 
-    // Getters
+    //Getters
     public String getSize() {
         return size;
     }
@@ -29,7 +27,7 @@ public class Pizza {
         return price;
     }
 
-    // Setters
+    //Setters
     public void setSize(String size) {
         this.size = size;
     }
@@ -42,12 +40,12 @@ public class Pizza {
         this.price = price;
     }
 
-    // Flat representation
+    // Flat
     public String toFlatString() {
         return size + "," + toppings + "," + price;
     }
 
-    // JSON-like representation
+    // JSON
     public String toJsonString() {
         return "{size:" + size + ",toppings:" + toppings + ",price:" + price + "}";
     }
