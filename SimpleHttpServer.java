@@ -1,3 +1,11 @@
+/** Project: lab4young
+ * Purpose Details: Http Server
+ * Course: IST 242
+ * Author: Caiden Young
+ * Date Developed: April 7th
+ * Last Date Changed: April 14th
+
+ */
 package main;
 
 import com.sun.net.httpserver.HttpExchange;

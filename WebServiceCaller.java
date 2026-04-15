@@ -1,3 +1,11 @@
+/** Project: lab4young
+ * Purpose Details: Web Service Caller
+ * Course: IST 242
+ * Author: Caiden Young
+ * Date Developed: April 7th
+ * Last Date Changed: April 14th
+
+ */
 package main;
 
 import java.io.BufferedReader;

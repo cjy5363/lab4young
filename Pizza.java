@@ -1,3 +1,11 @@
+/** Project: lab4young
+ * Purpose Details: Pizza shop constructors, getters and setters
+ * Course: IST 242
+ * Author: Caiden Young
+ * Date Developed: April 7th
+ * Last Date Changed: April 14th
+
+ */
 package main;
 
 
